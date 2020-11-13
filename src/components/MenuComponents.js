@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Media } from 'reactstrap';
+import { Media } from  'reactstrap';
 
 class Menu extends Component {
     constructor(props) {
