@@ -1,11 +1,115 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Card, CardImg, CardText,Breadcrumb,BreadcrumbItem, CardBody,
-    CardTitle } from 'reactstrap';
+    CardTitle ,Button,Modal,ModalHeader,ModalBody} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import {Control,Errors,LocalForm} from 'react-redux-form';
+import {Label,Row,Col} from 'reactstrap';
+
+const required = (val) => val &&  val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
 
 
-    
-      
+class CommentForm extends Component{
+
+constructor(props){
+    super(props);
+    this.state={
+        isModalOpen:false
+    }
+
+    this.toggleModal = this.toggleModal.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
+
+     }
+     toggleModal(){
+        this.setState({
+          isModalOpen : !this.state.isModalOpen
+        });
+    }
+  
+    handleSubmit(values) {
+     
+        this.toggleModal();
+    }
+
+
+        render(){
+            return(
+            <div className= "container">
+               <Button outline onClick={this.toggleModal} >
+            
+            <span className="fa fa-pencil fa-lg">
+
+            </span> Submit Comment
+          </Button>
+          <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+         <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+         <ModalBody>
+         <LocalForm  onSubmit={ this.handleSubmit}>
+                            <Row className= "form-group" >  
+                            <Col md={12}>   
+                            <Label htmlFor="Rating">Rating</Label>
+                            <Control.select model=".Rating" name="Rating"
+                                            className = "form-control">
+                                            
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                     </Control.select>  
+                                     </Col>
+                                     </Row>
+                            <Row className= "form-group">
+                                <Col md={12}>
+                            <Label htmlFor="Your name">Your Name</Label>
+                           
+                                    <Control.text model =".firstname" id="firstname" name="firstname"
+                                        placeholder=""
+                                        className="form-control"
+                                        validators ={{
+                                            required , minLength : minLength(3), maxLength : maxLength(15)
+                                        }} />
+                                    <Errors 
+                                    className = "text-danger"
+                                    model = ".firstname"
+                                    show = "touched"
+                                    messages = {
+                                        {
+                                            required :'Required',
+                                            minLength:'Must be greater than 2 characters',
+                                            maxLength:'Must be 15 characters or less'
+                                        }
+                                    }
+                                    />
+                                   
+                                   </Col>
+                                </Row>
+                          
+                                    
+                            <Row className= "form-group">
+                                <Col md={12}>
+                            <Label htmlFor="message" >Comment</Label>
+                              
+                                    <Control.textarea model = ".message" id="message" name="message"
+                                        rows="6"
+                                       className="form-control "></Control.textarea>
+                            </Col>
+                            </Row>
+                           
+                            <Button type="submit" value="submit" color="primary">Submit</Button>
+                        </LocalForm>
+                        
+         </ModalBody>
+       </Modal>
+          </div>
+          
+            );
+        }
+
+}
+
         
         function RenderDish({dish}){
             if(dish!=null){
@@ -37,9 +141,12 @@ import {Link} from 'react-router-dom';
                                         <li key={comment.id}>
                                         <p>{comment.comment}</p><br></br>
                                         <p>--{comment.author},{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </p>
+                                            
                                         </li>
+                                         
                                         );
                                     })}
+                                    <CommentForm/>
                                 </ul>
                      
                             </div>
