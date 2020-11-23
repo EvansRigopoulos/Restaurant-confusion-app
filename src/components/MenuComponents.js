@@ -38,14 +38,14 @@ import {Loading} from './LoadingComponent';
                 return(
                     <div className="container">
                         <div className="row">
-                        <h4>{props.errMess}
+                        <h4>{props.dishes.errMess}
                         </h4>
                         </div>
                     </div>
                 );  
             }
         
-
+        else
         return (
             <div className="container">
                 <div className="row">

@@ -10,7 +10,7 @@ export const addComment = (dishId, rating, author, comment) => ({
         comment: comment
     }
 });
-
+//Thunks
 export const fetchDishes = () => (dispatch)=>{
     dispatch(dishesLoading(true));
 
