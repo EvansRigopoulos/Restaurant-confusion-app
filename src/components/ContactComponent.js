@@ -33,8 +33,8 @@ class Contact extends Component{
         alert('Current State is: ' + JSON.stringify(values));
         this.props.resetFeedbackForm();
     }
-
-
+  
+    
    render(){
 
     return(
@@ -71,6 +71,8 @@ class Contact extends Component{
                 </div>
                 <div className="col-12 col-sm-6 offset-sm-1">
                     <h5>Map of our Location</h5>
+                
+                   
                 </div>
                 <div className="col-12 col-sm-11 offset-sm-1">
                     <div className="btn-group" role="group">
