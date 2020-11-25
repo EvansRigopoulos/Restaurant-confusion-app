@@ -50,8 +50,8 @@ constructor(props){
          <LocalForm  onSubmit={this.handleSubmit}>
                             <Row className= "form-group" >  
                             <Col md={12}>   
-                            <Label htmlFor="Rating">Rating</Label>
-                            <Control.select model=".Rating" name="Rating"
+                            <Label htmlFor="rating">Rating</Label>
+                            <Control.select model=".rating" name="rating"
                                             className = "form-control">
                                             
                                         <option>1</option>
@@ -64,9 +64,9 @@ constructor(props){
                                      </Row>
                             <Row className= "form-group">
                                 <Col md={12}>
-                            <Label htmlFor="Your name">Your Name</Label>
+                            <Label htmlFor="author">Your Name</Label>
                            
-                                    <Control.text model =".firstname" id="firstname" name="firstname"
+                                    <Control.text model =".author" id="author" name="author"
                                         placeholder=""
                                         className="form-control"
                                         validators ={{
@@ -74,7 +74,7 @@ constructor(props){
                                         }} />
                                     <Errors 
                                     className = "text-danger"
-                                    model = ".firstname"
+                                    model = ".author"
                                     show = "touched"
                                     messages = {
                                         {
@@ -91,9 +91,9 @@ constructor(props){
                                     
                             <Row className= "form-group">
                                 <Col md={12}>
-                            <Label htmlFor="message" >Comment</Label>
+                            <Label htmlFor="comment" >Comment</Label>
                               
-                                    <Control.textarea model = ".message" id="message" name="message"
+                                    <Control.textarea model = ".comment" id="comment" name="comment"
                                         rows="6"
                                        className="form-control "></Control.textarea>
                             </Col>
